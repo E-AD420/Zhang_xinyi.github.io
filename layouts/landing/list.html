@@ -7,22 +7,57 @@
     <div class="hero-text">
       <h1 class="hero-name">Xinyi Zhang</h1>
       <p class="hero-title">Associate Professor, School of Business, Sun Yat-sen University</p>
-      <p class="hero-email">zhangxy599@mail.sysu.edu.cn</p>
-      <p class="hero-intro">Xinyi Zhang is an Associate Professor at the School of Business, Sun Yat-sen University. He received his Ph.D. in Management (Accounting) from the School of Economics and Management, Tsinghua University. His research interests include accounting and financial regulation, data assets, and artificial intelligence and capital markets.</p>
-      <div class="hero-links">
-        <a href="{{ "bio/" | relURL }}" class="hero-link primary-link">Bio &amp; C.V.</a>
-      </div>
+      <p class="hero-email"><a href="mailto:zhangxy599@mail.sysu.edu.cn">zhangxy599@mail.sysu.edu.cn</a></p>
+      <p class="hero-intro">Ph.D. in Management (Accounting), School of Economics and Management, Tsinghua University. His research interests include accounting and financial regulation, data assets, and artificial intelligence and capital markets.</p>
     </div>
   </div>
 </div>
 
-<section id="research-areas" class="section">
+<section id="research" class="section">
   <div class="section-inner">
-    <h2 class="section-heading">Research Areas</h2>
-    <ul class="research-areas-list">
-      {{ range site.Data.research_areas }}
-      <li>{{ .name }}</li>
+    <h2 class="section-heading">Research</h2>
+
+    <h3 class="subsection-heading">Selected Publications</h3>
+    {{ $journalPubs := where site.RegularPages "Section" "publication" }}
+    {{ $journalPubs = where $journalPubs "Params.publication_types" "intersect" (slice "journal_article") }}
+    {{ range $journalPubs }}
+    <div class="pub-citation-item">
+      <p class="pub-citation-text">
+        {{ delimit .Params.authors ", " }}. <strong>"{{ .Title }}"</strong> <em>{{ .Params.publication }}</em>.
+      </p>
+      {{ if .Params.links }}
+      <a href="{{ (index .Params.links 0).url }}" class="pub-link-text">Publisher's Version</a>
       {{ end }}
+    </div>
+    {{ end }}
+
+    <h3 class="subsection-heading" style="margin-top: 32px;">Selected Working Papers</h3>
+    {{ $workingPapers := where site.RegularPages "Section" "publication" }}
+    {{ $workingPapers = where $workingPapers "Params.publication_types" "intersect" (slice "report") }}
+    {{ range $workingPapers }}
+    <div class="pub-citation-item">
+      <p class="pub-citation-text">
+        {{ delimit .Params.authors ", " }}. <strong>"{{ .Title }}"</strong>
+      </p>
+    </div>
+    {{ end }}
+  </div>
+</section>
+
+<section id="teaching" class="section">
+  <div class="section-inner">
+    <h2 class="section-heading">Teaching</h2>
+    <ul class="teaching-list">
+      <li>Financial Accounting (MBA)</li>
+      <li>Advanced Financial Management Theory and Practice (Master's)</li>
+      <li>Advanced Management Accounting Theory and Practice (Master's)</li>
+      <li>Modern Corporate Finance Theory (PhD)</li>
+      <li>Frontier Topics in Accounting and Auditing (PhD)</li>
+      <li>Research Methods and Thesis Writing (Undergraduate)</li>
+      <li>Academic Norms and Thesis Writing (Master's, PhD, MAud)</li>
+      <li>Statistical Analysis Methods (Master's, PhD)</li>
+      <li>Empirical Analysis Methods (PhD)</li>
+      <li>Advanced Financial Accounting (Undergraduate)</li>
     </ul>
   </div>
 </section>

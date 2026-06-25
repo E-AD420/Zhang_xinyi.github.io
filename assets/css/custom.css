@@ -130,6 +130,8 @@ img { max-width: 100%; height: auto; }
 .hero-name { font-size: 2rem; font-weight: 700; color: var(--color-text); margin-bottom: 4px; letter-spacing: -0.01em; }
 .hero-title { font-size: 1.05rem; color: var(--color-text-muted); margin-bottom: 4px; }
 .hero-email { font-size: 0.92rem; color: var(--color-text-muted); margin-bottom: 12px; }
+.hero-email a { color: var(--color-link); }
+.hero-email a:hover { color: var(--color-link-hover); }
 .hero-intro { font-size: 0.95rem; color: var(--color-text); line-height: 1.65; max-width: 640px; margin-bottom: 16px; }
 .hero-links { display: flex; gap: 12px; flex-wrap: wrap; }
 .hero-link { display: inline-block; padding: 8px 18px; border-radius: 6px; font-size: 0.88rem; font-weight: 500; border: 1px solid var(--color-border); color: var(--color-text-muted); background: var(--color-bg); transition: all 0.15s ease; text-decoration: none; }
@@ -186,6 +188,52 @@ img { max-width: 100%; height: auto; }
 .pub-links-row { display: flex; gap: 12px; flex-wrap: wrap; margin-bottom: 24px; }
 .btn-primary { display: inline-block; padding: 8px 18px; border-radius: 6px; font-size: 0.88rem; font-weight: 500; background: var(--color-accent); color: #fff; border: 1px solid var(--color-accent); transition: all 0.15s ease; }
 .btn-primary:hover { background: var(--color-accent-hover); color: #fff; }
+
+/* --- Simplified Single-Page Layout --- */
+.subsection-heading {
+  font-size: 1.05rem;
+  font-weight: 600;
+  color: var(--color-text);
+  margin-top: 20px;
+  margin-bottom: 12px;
+  padding-bottom: 4px;
+  border-bottom: 1px solid var(--color-border);
+}
+.pub-citation-item {
+  padding: 10px 0;
+  border-bottom: 1px solid var(--color-border);
+}
+.pub-citation-item:last-child { border-bottom: none; }
+.pub-citation-text {
+  font-size: 0.93rem;
+  line-height: 1.6;
+  color: var(--color-text);
+}
+.pub-citation-text em { color: var(--color-text-muted); }
+.pub-citation-text strong { font-weight: 600; }
+.pub-link-text {
+  font-size: 0.84rem;
+  color: var(--color-link);
+  display: inline-block;
+  margin-top: 4px;
+}
+.pub-link-text:hover { color: var(--color-link-hover); }
+.teaching-list {
+  list-style: none;
+  padding: 0;
+  columns: 2;
+  column-gap: 32px;
+}
+.teaching-list li {
+  font-size: 0.93rem;
+  line-height: 1.7;
+  color: var(--color-text);
+  padding: 2px 0;
+  break-inside: avoid;
+}
+@media (max-width: 640px) {
+  .teaching-list { columns: 1; }
+}
 
 /* See Also */
 .see-also { margin-top: 32px; padding: 20px 24px; background: var(--color-surface); border-radius: 6px; border: 1px solid var(--color-border); }
