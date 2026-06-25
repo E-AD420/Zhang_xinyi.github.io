@@ -195,29 +195,45 @@ img { max-width: 100%; height: auto; }
   font-weight: 600;
   color: var(--color-text);
   margin-top: 20px;
-  margin-bottom: 12px;
+  margin-bottom: 16px;
   padding-bottom: 4px;
   border-bottom: 1px solid var(--color-border);
 }
-.pub-citation-item {
-  padding: 10px 0;
-  border-bottom: 1px solid var(--color-border);
+.pub-entry {
+  margin-bottom: 18px;
 }
-.pub-citation-item:last-child { border-bottom: none; }
-.pub-citation-text {
-  font-size: 0.93rem;
-  line-height: 1.6;
+.pub-title-link, .pub-title-text {
+  font-size: 0.97rem;
+  font-weight: 500;
   color: var(--color-text);
+  text-decoration: underline;
+  text-underline-offset: 3px;
+  line-height: 1.5;
+  display: block;
+  margin-bottom: 4px;
 }
-.pub-citation-text em { color: var(--color-text-muted); }
-.pub-citation-text strong { font-weight: 600; }
-.pub-link-text {
-  font-size: 0.84rem;
-  color: var(--color-link);
-  display: inline-block;
-  margin-top: 4px;
+.pub-title-link { color: var(--color-link); }
+.pub-title-link:hover { color: var(--color-link-hover); }
+.pub-meta-list {
+  list-style: none;
+  padding-left: 0;
+  margin: 0;
 }
-.pub-link-text:hover { color: var(--color-link-hover); }
+.pub-meta-list li {
+  font-size: 0.88rem;
+  line-height: 1.55;
+  color: var(--color-text-muted);
+  padding: 1px 0;
+  padding-left: 12px;
+  position: relative;
+}
+.pub-meta-list li::before {
+  content: '\2022';
+  position: absolute;
+  left: 0;
+  color: var(--color-text-light);
+}
+.pub-meta-list li em { color: var(--color-text-muted); }
 .teaching-list {
   list-style: none;
   padding: 0;

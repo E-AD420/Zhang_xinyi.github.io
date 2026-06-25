@@ -21,13 +21,26 @@
     {{ $journalPubs := where site.RegularPages "Section" "publication" }}
     {{ $journalPubs = where $journalPubs "Params.publication_types" "intersect" (slice "journal_article") }}
     {{ range $journalPubs }}
-    <div class="pub-citation-item">
-      <p class="pub-citation-text">
-        {{ delimit .Params.authors ", " }}. <strong>"{{ .Title }}"</strong> <em>{{ .Params.publication }}</em>.
-      </p>
+    <div class="pub-entry">
       {{ if .Params.links }}
-      <a href="{{ (index .Params.links 0).url }}" class="pub-link-text">Publisher's Version</a>
+      <a href="{{ (index .Params.links 0).url }}" class="pub-title-link">{{ .Title }}</a>
+      {{ else }}
+      <span class="pub-title-text">{{ .Title }}</span>
       {{ end }}
+      <ul class="pub-meta-list">
+        {{ if .Params.publication }}
+        <li><em>{{ .Params.publication }}</em></li>
+        {{ end }}
+        {{ $coauthors := slice }}
+        {{ range .Params.authors }}
+          {{ if ne . "Xinyi Zhang" }}
+            {{ $coauthors = $coauthors | append . }}
+          {{ end }}
+        {{ end }}
+        {{ if $coauthors }}
+        <li>Joint work with {{ delimit $coauthors ", " }}</li>
+        {{ end }}
+      </ul>
     </div>
     {{ end }}
 
@@ -35,10 +48,19 @@
     {{ $workingPapers := where site.RegularPages "Section" "publication" }}
     {{ $workingPapers = where $workingPapers "Params.publication_types" "intersect" (slice "report") }}
     {{ range $workingPapers }}
-    <div class="pub-citation-item">
-      <p class="pub-citation-text">
-        {{ delimit .Params.authors ", " }}. <strong>"{{ .Title }}"</strong>
-      </p>
+    <div class="pub-entry">
+      <span class="pub-title-text">{{ .Title }}</span>
+      <ul class="pub-meta-list">
+        {{ $coauthors := slice }}
+        {{ range .Params.authors }}
+          {{ if ne . "Xinyi Zhang" }}
+            {{ $coauthors = $coauthors | append . }}
+          {{ end }}
+        {{ end }}
+        {{ if $coauthors }}
+        <li>Joint work with {{ delimit $coauthors ", " }}</li>
+        {{ end }}
+      </ul>
     </div>
     {{ end }}
   </div>
