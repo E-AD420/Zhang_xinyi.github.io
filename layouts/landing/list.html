@@ -5,13 +5,35 @@
       <img src="{{ "images/Zhang_Xinyi.jpg" | relURL }}" alt="Portrait of Xinyi Zhang" class="portrait" width="200" height="200">
     </div>
     <div class="hero-text">
-      <h1 class="hero-name">Xinyi Zhang</h1>
+      <h1 class="hero-name">Xinyi Zhang (张新一)</h1>
       <p class="hero-title">Associate Professor, School of Business, Sun Yat-sen University</p>
       <p class="hero-email"><a href="mailto:zhangxy599@mail.sysu.edu.cn">zhangxy599@mail.sysu.edu.cn</a></p>
       <p class="hero-intro">Ph.D. in Management (Accounting), School of Economics and Management, Tsinghua University. His research interests include accounting and financial regulation, data assets, and artificial intelligence and capital markets.</p>
     </div>
   </div>
 </div>
+
+<section class="section">
+  <div class="section-inner">
+    <h2 class="section-heading">Work Experience</h2>
+    <ul class="info-list">
+      <li>Associate Professor, School of Business, Sun Yat-sen University, February 2025 – present.</li>
+      <li>Assistant Professor, School of Business, Sun Yat-sen University, September 2020 – January 2025.</li>
+    </ul>
+  </div>
+</section>
+
+<section class="section">
+  <div class="section-inner">
+    <h2 class="section-heading">Education</h2>
+    <ul class="info-list">
+      <li>Ph.D. in Management (Accounting), School of Economics and Management, Tsinghua University, June 2020.</li>
+      <li>Visiting Scholar, Marshall School of Business, University of Southern California, January 2018 – June 2018.</li>
+      <li>Master of Accounting, School of Economics and Management, Tsinghua University, July 2015.</li>
+      <li>Bachelor of Management in Accounting, School of Management, Xiamen University, July 2013.</li>
+    </ul>
+  </div>
+</section>
 
 <section id="research" class="section">
   <div class="section-inner">
@@ -38,7 +60,7 @@
           {{ end }}
         {{ end }}
         {{ if $coauthors }}
-        <li>Joint work with {{ delimit $coauthors ", " }}</li>
+        <li>Joint work with {{ delimit $coauthors ", " }}.</li>
         {{ end }}
       </ul>
     </div>
@@ -49,7 +71,11 @@
     {{ $workingPapers = where $workingPapers "Params.publication_types" "intersect" (slice "report") }}
     {{ range $workingPapers }}
     <div class="pub-entry">
+      {{ if .Params.ssrn_url }}
+      <a href="{{ .Params.ssrn_url }}" class="pub-title-link">{{ .Title }}</a>
+      {{ else }}
       <span class="pub-title-text">{{ .Title }}</span>
+      {{ end }}
       <ul class="pub-meta-list">
         {{ $coauthors := slice }}
         {{ range .Params.authors }}
@@ -58,7 +84,30 @@
           {{ end }}
         {{ end }}
         {{ if $coauthors }}
-        <li>Joint work with {{ delimit $coauthors ", " }}</li>
+        <li>Joint work with {{ delimit $coauthors ", " }}.</li>
+        {{ end }}
+      </ul>
+    </div>
+    {{ end }}
+
+    <h3 class="subsection-heading" style="margin-top: 32px;">Selected Publications in Chinese Journals</h3>
+    {{ $chinesePubs := where site.RegularPages "Section" "publication" }}
+    {{ $chinesePubs = where $chinesePubs "Params.publication_types" "intersect" (slice "journal_article_chinese") }}
+    {{ range $chinesePubs }}
+    <div class="pub-entry">
+      <span class="pub-title-text">{{ .Title }} ({{ .Params.title_cn }})</span>
+      <ul class="pub-meta-list">
+        {{ if .Params.publication }}
+        <li><em>{{ .Params.publication }}</em></li>
+        {{ end }}
+        {{ $coauthors := slice }}
+        {{ range .Params.authors }}
+          {{ if ne . "Xinyi Zhang" }}
+            {{ $coauthors = $coauthors | append . }}
+          {{ end }}
+        {{ end }}
+        {{ if $coauthors }}
+        <li>Joint work with {{ delimit $coauthors ", " }}.</li>
         {{ end }}
       </ul>
     </div>
